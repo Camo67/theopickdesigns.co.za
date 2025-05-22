@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheoPick Designs | Catering Services</title>
+    <meta name="description" content="Exquisite catering services for all your events and special occasions in Cape Town.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5d1a36",
+                        accent: "#d4a59a",
+                        dark: "#2c1a20",
+                        light: "#faf7f8"
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body class="font-sans text-dark bg-light">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold font-display text-primary">TheoPick Designs</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#about" class="hover:text-accent transition-colors">About</a>
+                    <a href="index.html#services" class="hover:text-accent transition-colors">Services</a>
+                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html#about" class="hover:text-accent transition-colors">About</a>
+                    <a href="index.html#services" class="hover:text-accent transition-colors">Services</a>
+                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-r from-primary to-dark text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-display font-bold mb-6">Delicious <span class="text-accent">Catering</span> for Every Occasion</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">From intimate gatherings to grand events, we offer exquisite culinary experiences tailored to your taste.</p>
+                <a href="#contact" class="inline-block bg-accent hover:bg-opacity-90 text-white font-medium px-8 py-3 rounded-md transition-all transform hover:scale-105">Inquire About Catering</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center">Our Catering Portfolio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/1080/600/400" alt="Catering dish example 1" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Elegant Canape Selection</h3>
+                        <p class="text-gray-600">Perfect for cocktail parties and sophisticated receptions.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/287/600/400" alt="Catering dish example 2" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Gourmet Buffet Spread</h3>
+                        <p class="text-gray-600">A diverse array of hot and cold dishes for larger events.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/1041/600/400" alt="Catering dish example 3" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Dessert Extravaganza</h3>
+                        <p class="text-gray-600">Sweet delights to complete any meal or celebration.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/1054/600/400" alt="Catering dish example 4" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Custom Menu Creation</h3>
+                        <p class="text-gray-600">Work with us to design a unique menu for your event.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/1060/600/400" alt="Catering dish example 5" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Themed Event Catering</h3>
+                        <p class="text-gray-600">Culinary themes to match your event's style and atmosphere.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/1063/600/400" alt="Catering dish example 6" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-gray-50">
+                        <h3 class="text-xl font-semibold mb-2">Beverage & Bar Service</h3>
+                        <p class="text-gray-600">Full beverage solutions, including cocktails and non-alcoholic options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-primary text-white p-8 md:p-12">
+                        <h2 class="text-3xl font-display font-bold mb-6">Contact TheoPick Designs for Catering</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4 text-accent"></i>
+                                <div>
+                                    <h4 class="font-bold">Address</h4>
+                                    <p>17 Warthorne, Grassy Park<br>Cape Town, South Africa, 7785</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt mt-1 mr-4 text-accent"></i>
+                                <div>
+                                    <h4 class="font-bold">Mobile</h4>
+                                    <p>+27 81 425 6058</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fab fa-whatsapp mt-1 mr-4 text-accent"></i>
+                                <div>
+                                    <h4 class="font-bold">WhatsApp</h4>
+                                    <p>+27 81 425 6058</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4 text-accent"></i>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p>info@theopickdesigns.co.za</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-globe mt-1 mr-4 text-accent"></i>
+                                <div>
+                                    <h4 class="font-bold">Website</h4>
+                                    <p>theopickdesigns.co.za</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-pinterest text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-2xl font-display font-bold mb-6 text-primary">Inquire About Catering</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="event_date" class="block text-gray-700 mb-2">Event Date (Optional)</label>
+                                <input type="date" id="event_date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-2">Tell us about your catering needs</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white font-medium px-8 py-3 rounded-md transition-colors">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">TheoPick Designs</h3>
+                    <p class="text-gray-400">Creativity and style in every project. Specializing in decor, catering, dressmaking, and renovations in Cape Town.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-accent transition-colors">About</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
+                            <span>17 Warthorne, Grassy Park, Cape Town, 7785</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3 text-accent"></i>
+                            <span>+27 81 425 6058</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
+                            <span>info@theopickdesigns.co.za</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 TheoPick Designs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
