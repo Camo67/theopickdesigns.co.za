@@ -1,274 +1,310 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheoPick Designs | Cape Town Decor, Catering & Dressmaking</title>
-    <meta name="description" content="TheoPick Designs specializes in decor, catering, dressmaking, and renovations in Cape Town. We bring creativity and style to every project.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#5d1a36",
-                        accent: "#d4a59a",
-                        dark: "#2c1a20",
-                        light: "#faf7f8"
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        display: ['Cormorant Garamond', 'serif']
-                    }
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
                 }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
             }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
-    </style>
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ancestral offers Indigenous healing and creative wellness in Western Cape, South Africa. Explore herbal remedies, holistic massages, and handcrafted products.">
+  <meta name="keywords" content="Indigenous herbal healing, Indigenous wellness South Africa, traditional African plant medicine, holistic massage Western Cape, natural remedies Cape Town, herbal salves South Africa, ancestral healing massage, African Indigenous knowledge revival, Buchu salve South Africa, Wilde Als uses, Khoigoed benefits">
+  <title>Ancestral | Indigenous Healing & Creative Wellness</title>
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/32?text=A">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Custom Tailwind Colors: Camouflage-inspired (muted greens, browns, grays) */
+    :root {
+      --camo-green: #4A7043; /* Olive green */
+      --camo-forest: #2E4A2B; /* Dark forest green */
+      --camo-brown: #6B4E31; /* Muted brown */
+      --camo-light: #E8ECE0; /* Light gray-green */
+      --camo-gray: #6B7280; /* Soft gray */
+    }
+    .bg-camo-green { background-color: var(--camo-green); }
+    .bg-camo-forest { background-color: var(--camo-forest); }
+    .bg-camo-brown { background-color: var(--camo-brown); }
+    .bg-camo-light { background-color: var(--camo-light); }
+    .bg-camo-gray { background-color: var(--camo-gray); }
+    .text-camo-green { color: var(--camo-green); }
+    .text-camo-forest { color: var(--camo-forest); }
+    .text-camo-brown { color: var(--camo-brown); }
+    .hover\:bg-camo-forest:hover { background-color: var(--camo-forest); }
+    .hover\:text-camo-forest:hover { color: var(--camo-forest); }
+  </style>
 </head>
-<body class="font-sans text-dark bg-light">
-    <header class="fixed w-full bg-white shadow-sm z-50">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold font-display text-primary">TheoPick Designs</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="hover:text-accent transition-colors">About</a>
-                    <a href="#services" class="hover:text-accent transition-colors">Services</a>
-                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
-                </div>
-                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <div class="md:hidden hidden py-4" id="mobile-menu">
-                <div class="flex flex-col space-y-4">
-                    <a href="#about" class="hover:text-accent transition-colors">About</a>
-                    <a href="#services" class="hover:text-accent transition-colors">Services</a>
-                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+<body class="bg-camo-light font-sans text-camo-gray">
+  <!-- Header -->
+  <header class="bg-camo-forest text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <img src="https://via.placeholder.com/150x50?text=Ancestral+Logo" alt="Ancestral Logo" class="mx-auto mb-4 h-12 sm:h-16">
+      <h1 class="text-3xl sm:text-4xl font-bold">Ancestral</h1>
+      <p class="text-base sm:text-lg mt-2">Indigenous Healing & Creative Wellness | Western Cape, South Africa</p>
+      <p class="italic text-sm sm:text-base mt-2">"We are the memory of the land, and the land remembers us. Through plants, touch, and story—we heal."</p>
+    </div>
+  </header>
 
-    <section class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-r from-primary to-dark text-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-3xl">
-                <h1 class="text-4xl md:text-6xl font-display font-bold mb-6">Creativity & <span class="text-accent">Style</span> in Every Project</h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90">Based in Cape Town, we specialize in decor, catering, dressmaking, and renovations.</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#contact" class="inline-block bg-accent hover:bg-opacity-90 text-white font-medium px-8 py-3 rounded-md transition-all transform hover:scale-105">Get in Touch</a>
-                    <a href="#services" class="inline-block border-2 border-white hover:bg-white hover:text-dark text-white font-medium px-8 py-3 rounded-md transition-all">Our Services</a>
-                </div>
-            </div>
+  <!-- Navigation -->
+  <nav class="bg-camo-brown text-white sticky top-0 z-10">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4 text-sm sm:text-base">
+        <a href="#home" class="hover:text-camo-light py-1">Home</a>
+        <a href="#about" class="hover:text-camo-light py-1">About</a>
+        <a href="#heritage" class="hover:text-camo-light py-1">Our Heritage</a>
+        <a href="#services" class="hover:text-camo-light py-1">Services</a>
+        <a href="#products" class="hover:text-camo-light py-1">Products</a>
+        <a href="#shop" class="hover:text-camo-light py-1">Shop</a>
+        <a href="#gallery" class="hover:text-camo-light py-1">Gallery</a>
+        <a href="#contact" class="hover:text-camo-light py-1">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="py-12 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Welcome to Ancestral</h2>
+      <p class="text-base sm:text-lg mb-4">Ancestral is more than a business; it is a sacred return. Rooted in the heritage of the Indigenous people, our work bridges ancient Indigenous wisdom with modern holistic healing.</p>
+      <p class="text-base sm:text-lg mb-4">Through handcrafted products, ancestral herbal remedies, and intuitive massage therapy, we guide you to profound self-reconnection, rooting you deeply in your heritage and the healing embrace of the land.</p>
+      <p class="italic text-camo-forest mb-4">🌀 Indigenous knowledge is medicine. Let it remember you.</p>
+      <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-camo-forest">
+        <i class="fab fa-whatsapp mr-2"></i> Book Now or Order via WhatsApp: 074 328 8901
+      </a>
+      <p class="mt-2 text-sm sm:text-base">📧 <a href="mailto:ancestral42@gmail.com" class="text-camo-forest hover:underline">ancestral42@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-12 bg-camo-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6">Our Story</h2>
+      <p class="text-base sm:text-lg mb-4">Founded by Marcia, a proud Indigenous wellness practitioner, Ancestral is a journey of remembrance, creation, and healing.</p>
+      <p class="text-base sm:text-lg mb-4">We honour our foremothers, their songs, their medicines, and their resilience—reviving the traditional healing practices of the Indigenous people through:</p>
+      <ul class="list-disc list-inside mb-4 text-base sm:text-lg">
+        <li>Herbal wisdom</li>
+        <li>Touch therapy</li>
+        <li>Creative expression</li>
+        <li>Community upliftment (through shared knowledge and support)</li>
+      </ul>
+      <p class="text-base sm:text-lg italic">We believe that wellness is ancestral, and every remedy, every massage, every handcrafted item is a prayer in motion.</p>
+    </div>
+  </section>
+
+  <!-- Heritage Section -->
+  <section id="heritage" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6">🪶 The Indigenous People & Their Herbal Legacy</h2>
+      <p class="text-base sm:text-lg mb-4">The Indigenous people are among Southern Africa’s original cultures. Their deep connection with the land birthed a rich tradition of plant-based healing, spiritual ritual, and natural living.</p>
+      <p class="text-base sm:text-lg mb-4">Some of the plants used in Indigenous medicine include:</p>
+      <ul class="list-disc list-inside mb-4 text-base sm:text-lg">
+        <li><strong>Khoegoed</strong> – for grounding, cleansing, and clarity</li>
+        <li><strong>Wilde Als</strong> – for fevers, flu, and energetic clearing</li>
+        <li><strong>Buchu</strong> – for detoxing, calming inflammation, and spiritual protection</li>
+        <li><strong>Lemongrass, Peppermint, Myrrh & Frankincense</strong> – to uplift and restore harmony</li>
+      </ul>
+      <p class="text-base sm:text-lg">At Ancestral, we keep this knowledge alive, offering products and services that carry the ancient pulse of the land forward into the now.</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-12 bg-camo-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6">✨ Holistic Healing Massage</h2>
+      <p class="text-base sm:text-lg mb-4">Our massages transcend mere relaxation, becoming sacred rituals of renewal. Using <strong>Indigenous oils</strong> and ancestral techniques, we restore your innate balance, release deep-seated tension, and awaken profound inner peace.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-2">🌸 Swedish Massage</h3>
+          <p class="text-base">90 Minutes – R700</p>
+          <p class="text-base">60 Minutes – R500</p>
+          <p class="text-base">30 Minutes – R250</p>
         </div>
-    </section>
-
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-                    <img src="https://picsum.photos/600/600?random=1" alt="TheoPick Designs team working on a project" class="w-full rounded-lg shadow-lg" loading="lazy">
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">About TheoPick Designs</h2>
-                    <p class="text-gray-600 mb-6">Based in Cape Town, we specialize in decor, catering, dressmaking, and renovations, delivering creativity and style to every project.</p>
-                    <p class="text-gray-600 mb-8">Let us bring your vision to life with expert craftsmanship and attention to detail. 🎉✨</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#services" class="inline-block border-2 border-primary text-primary font-medium px-8 py-3 rounded-md hover:bg-primary hover:text-white transition-colors">Our Services</a>
-                        <a href="#contact" class="inline-block bg-primary hover:bg-opacity-90 text-white font-medium px-8 py-3 rounded-md transition-colors">Contact Us</a>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-2">🌿 Deep Tissue Massage</h3>
+          <p class="text-base">90 Minutes – R800</p>
+          <p class="text-base">60 Minutes – R600</p>
+          <p class="text-base">30 Minutes – R300</p>
         </div>
-    </section>
+      </div>
+      <h3 class="text-xl sm:text-2xl font-semibold mt-6 mb-2 text-center">🌞 Monthly Wellness Packages</h3>
+      <p class="text-base sm:text-lg mb-4">Unlock consistent well-being and savings with our accessible packages:</p>
+      <ul class="list-disc list-inside mb-4 text-base sm:text-lg">
+        <li>4 x 60 min massages – R1400/month</li>
+        <li>2 x 60 min massages – R900/month</li>
+        <li>(On contract basis)</li>
+      </ul>
+      <p class="text-base sm:text-lg italic mb-4">All treatments are done using sacred Indigenous oils & balms.</p>
+      <div class="text-center">
+        <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-camo-forest">
+          <i class="fab fa-whatsapp mr-2"></i> Book with Marcia: 074 328 8901
+        </a>
+        <p class="mt-2 text-sm sm:text-base">📧 <a href="mailto:ancestral42@gmail.com" class="text-camo-forest hover:underline">ancestral42@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
 
-    <section id="services" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center">Our Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
-                    <div class="w-20 h-20 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-utensils text-3xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Catering</h3>
-                    <p class="text-gray-600 mb-4">Exquisite catering services for all your events and special occasions.</p>
-                    <a href="catering.html" class="text-primary font-medium hover:underline">View Details →</a>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
-                    <div class="w-20 h-20 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-couch text-3xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Set Decor</h3>
-                    <p class="text-gray-600 mb-4">Transform any space with our creative and stylish decor solutions.</p>
-                    <a href="set-decor.html" class="text-primary font-medium hover:underline">View Details →</a>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
-                    <div class="w-20 h-20 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-tshirt text-3xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Dressmaking</h3>
-                    <p class="text-gray-600 mb-4">Custom dressmaking services tailored to your unique style and needs.</p>
-                    <a href="dressmaking.html" class="text-primary font-medium hover:underline">View Details →</a>
-                </div>
-            </div>
+  <!-- Products Section -->
+  <section id="products" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6">🌿 Our Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Indigenous Medicinal Salve -->
+        <div class="bg-camo-light p-4 rounded-lg shadow text-center">
+          <img src="https://via.placeholder.com/300x200?text=Medicinal+Salve" alt="Indigenous Medicinal Salve" class="w-full h-48 object-cover rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Indigenous Medicinal Salve</h3>
+          <p class="text-sm sm:text-base mb-2">A sacred blend of <strong>Khoigoed</strong>, <strong>Wilde Als</strong>, <strong>Buchu</strong>, and more. Carries the essence of traditional African plant medicine.</p>
+          <p class="text-sm sm:text-base mb-2"><strong>Benefits:</strong> Antimicrobial, anti-inflammatory, antioxidant, anti-aging, antifungal, muscle relaxation, soothes skin conditions.</p>
+          <p class="text-sm sm:text-base mb-2"><strong>Price:</strong> R120 (small) | R200 (medium) | R300 (large)</p>
+          <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 px-4 rounded-lg hover:bg-camo-forest">
+            <i class="fab fa-whatsapp mr-2"></i> Order Now
+          </a>
         </div>
-    </section>
-
-    <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-md overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-primary text-white p-8 md:p-12">
-                        <h2 class="text-3xl font-display font-bold mb-6">Contact TheoPick Designs</h2>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt mt-1 mr-4 text-accent"></i>
-                                <div>
-                                    <h4 class="font-bold">Address</h4>
-                                    <p>17 Warthorne, Grassy Park<br>Cape Town, South Africa, 7785</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt mt-1 mr-4 text-accent"></i>
-                                <div>
-                                    <h4 class="font-bold">Mobile</h4>
-                                    <p>+27 81 425 6058</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fab fa-whatsapp mt-1 mr-4 text-accent"></i>
-                                <div>
-                                    <h4 class="font-bold">WhatsApp</h4>
-                                    <p>+27 81 425 6058</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope mt-1 mr-4 text-accent"></i>
-                                <div>
-                                    <h4 class="font-bold">Email</h4>
-                                    <p>info@theopickdesigns.co.za</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-globe mt-1 mr-4 text-accent"></i>
-                                <div>
-                                    <h4 class="font-bold">Website</h4>
-                                    <p>theopickdesigns.co.za</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <h4 class="font-bold mb-4">Follow Us</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-facebook text-xl"></i></a>
-                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-pinterest text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2 p-8 md:p-12">
-                        <h3 class="text-2xl font-display font-bold mb-6 text-primary">Send Us a Message</h3>
-                        <form class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 mb-2">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="service" class="block text-gray-700 mb-2">Service Interested In</label>
-                                <select id="service" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                    <option value="">Select Service</option>
-                                    <option value="catering">Catering</option>
-                                    <option value="decor">Set Decor</option>
-                                    <option value="dressmaking">Dressmaking</option>
-                                    <option value="renovations">Renovations</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-gray-700 mb-2">Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white font-medium px-8 py-3 rounded-md transition-colors">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <!-- Herbal Tea Blends -->
+        <div class="bg-camo-light p-4 rounded-lg shadow text-center">
+          <img src="https://via.placeholder.com/300x200?text=Herbal+Tea" alt="Herbal Tea Blends" class="w-full h-48 object-cover rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Herbal Tea Blends</h3>
+          <p class="text-sm sm:text-base mb-2">Crafted from Indigenous herbs for wellness and balance.</p>
+          <p class="text-sm sm:text-base mb-2"><strong>Price:</strong> Contact for details</p>
+          <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 px-4 rounded-lg hover:bg-camo-forest">
+            <i class="fab fa-whatsapp mr-2"></i> Order Now
+          </a>
         </div>
-    </section>
-
-    <footer class="bg-dark text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-display font-bold mb-4">TheoPick Designs</h3>
-                    <p class="text-gray-400">Creativity and style in every project. Specializing in decor, catering, dressmaking, and renovations in Cape Town.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-accent transition-colors">About</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition-colors">Services</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-accent transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i>
-                            <span>17 Warthorne, Grassy Park, Cape Town, 7785</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-phone-alt mt-1 mr-3 text-accent"></i>
-                            <span>+27 81 425 6058</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-accent"></i>
-                            <span>info@theopickdesigns.co.za</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 TheoPick Designs. All rights reserved.</p>
-            </div>
+        <!-- Healing Ointments -->
+        <div class="bg-camo-light p-4 rounded-lg shadow text-center">
+          <img src="https://via.placeholder.com/300x200?text=Healing+Ointment" alt="Healing Ointments" class="w-full h-48 object-cover rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Healing Ointments</h3>
+          <p class="text-sm sm:text-base mb-2">Soothing balms infused with ancestral plant wisdom.</p>
+          <p class="text-sm sm:text-base mb-2"><strong>Price:</strong> Contact for details</p>
+          <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 px-4 rounded-lg hover:bg-camo-forest">
+            <i class="fab fa-whatsapp mr-2"></i> Order Now
+          </a>
         </div>
-    </footer>
+        <!-- Handcrafted Cultural Merchandise -->
+        <div class="bg-camo-light p-4 rounded-lg shadow text-center">
+          <img src="https://via.placeholder.com/300x200?text=Cultural+Merchandise" alt="Handcrafted Cultural Merchandise" class="w-full h-48 object-cover rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Handcrafted Cultural Merchandise</h3>
+          <p class="text-sm sm:text-base mb-2">Unique items celebrating Indigenous heritage.</p>
+          <p class="text-sm sm:text-base mb-2"><strong>Price:</strong> Contact for details</p>
+          <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 px-4 rounded-lg hover:bg-camo-forest">
+            <i class="fab fa-whatsapp mr-2"></i> Order Now
+          </a>
+        </div>
+      </div>
+      <p class="text-base sm:text-lg italic mt-6 text-center">📦 Shipping available nationwide.</p>
+    </div>
+  </section>
 
-    <script>
-        // Mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
+  <!-- Shop Section -->
+  <section id="shop" class="py-12 bg-camo-light">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Shop</h2>
+      <p class="text-base sm:text-lg mb-4"><strong>Ready to purchase? Order easily via WhatsApp!</strong></p>
+      <p class="text-base sm:text-lg mb-4">🔥 <strong>Available Now:</strong></p>
+      <ul class="list-disc list-inside mb-4 mx-auto max-w-md text-base sm:text-lg">
+        <li>Indigenous Medicinal Salve</li>
+        <li>Herbal Tea Blends</li>
+        <li>Healing Ointments</li>
+        <li>Handcrafted Cultural Merchandise</li>
+      </ul>
+      <p class="text-base sm:text-lg mb-4">✨ <strong>Coming Soon:</strong></p>
+      <ul class="list-disc list-inside mb-4 mx-auto max-w-md text-base sm:text-lg">
+        <li>Indigenous-Inspired Art & Decor</li>
+      </ul>
+      <p class="text-base sm:text-lg italic mb-4">Support Indigenous artisans. Heal with purpose.</p>
+      <a href="https://wa.me/27743288901" target="_blank" class="inline-block bg-camo-green text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-camo-forest">
+        <i class="fab fa-whatsapp mr-2"></i> Order via WhatsApp: 074 328 8901
+      </a>
+    </div>
+  </section>
+
+  <!-- Gallery/Testimonials Section -->
+  <section id="gallery" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-6">Gallery & Testimonials</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div class="bg-camo-light p-4 rounded-lg">
+          <p class="italic text-base mb-2">"The massage I had from Marcia was unlike anything I’ve ever experienced. I felt like I left with my spirit reset."</p>
+          <p class="font-semibold text-sm">– A. Daniels (Spirit Reset)</p>
+        </div>
+        <div class="bg-camo-light p-4 rounded-lg">
+          <p class="italic text-base mb-2">"The salve helped with my daughter’s eczema and worked better than anything from the pharmacy. I will be buying again!"</p>
+          <p class="font-semibold text-sm">– L. Fredericks (Eczema Relief)</p>
+        </div>
+      </div>
+      <p class="text-base sm:text-lg text-center">🖼 Photos of massage setup, product jars, plant harvesting, and art coming soon.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-12 bg-camo-light">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Contact</h2>
+      <p class="text-base sm:text-lg mb-4">Let’s connect. Heal. Remember.</p>
+      <p class="text-base sm:text-lg mb-4">📱 <a href="https://wa.me/27743288901" target="_blank" class="text-camo-forest hover:underline"><i class="fab fa-whatsapp mr-2"></i>Call or WhatsApp: 074 328 8901</a></p>
+      <p class="text-base sm:text-lg mb-4">📧 <a href="mailto:ancestral42@gmail.com" class="text-camo-forest hover:underline">ancestral42@gmail.com</a></p>
+      <p class="text-base sm:text-lg mb-4">📍 Western Cape, South Africa</p>
+      <p class="text-base sm:text-lg mb-4">💬 Follow our journey:</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="text-camo-forest hover:text-camo-green"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a>
+        <a href="#" class="text-camo-forest hover:text-camo-green"><i class="fab fa-facebook text-xl sm:text-2xl"></i></a>
+        <a href="#" class="text-camo-forest hover:text-camo-green"><i class="fab fa-pinterest text-xl sm:text-2xl"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-camo-forest text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-sm sm:text-base">© 2025 Ancestral. All rights reserved.</p>
+      <p class="mt-2 text-sm sm:text-base">Rooted in the Western Cape, South Africa.</p>
+    </div>
+  </footer>
+
+  <!-- Smooth Scroll Script -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
